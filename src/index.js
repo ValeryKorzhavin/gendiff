@@ -7,7 +7,6 @@ const genDiff = (firstFilePath, secondFilePath) => {
 
   const obj1 = JSON.parse(firstFileData);
   const obj2 = JSON.parse(secondFileData);
-
   const keysIntersection = _.intersection(_.keys(obj1), _.keys(obj2));
   const onlyFirstObjectKeys = _.difference(_.keys(obj1), _.keys(obj2));
   const onlySecondObjectKeys = _.difference(_.keys(obj2), _.keys(obj1));
@@ -33,8 +32,6 @@ const genDiff = (firstFilePath, secondFilePath) => {
     ...format(firstObjectDiff),
     ...format(secondObjectDiff),
   ].join('\n')}\n}`;
-
-  // fs.writeFileSync('../output', output, 'utf8');
 
   return output;
 };
