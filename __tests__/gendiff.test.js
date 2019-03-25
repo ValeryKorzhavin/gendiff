@@ -2,28 +2,17 @@ import fs from 'fs';
 import path from 'path';
 import genDiff from '../src';
 
-const expectedFilePath = path.join(__dirname, '__fixtures__', 'diff');
+const extentions = [
+  'ini',
+  'yaml',
+  'json',
+];
 
-const yamlBeforeFilePath = path.join(__dirname, '__fixtures__', 'before.yaml');
-const yamlAfterFilePath = path.join(__dirname, '__fixtures__', 'after.yaml');
-
-const jsonBeforeFilePath = path.join(__dirname, '__fixtures__', 'before.json');
-const jsonAfterFilePath = path.join(__dirname, '__fixtures__', 'after.json');
-
-const iniBeforeFilePath = path.join(__dirname, '__fixtures__', 'before.ini');
-const iniAfterFilePath = path.join(__dirname, '__fixtures__', 'after.ini');
-
-test('flat json diff', () => {
+test.each(extentions)('flat %s diff', (extention) => {
+  const expectedFilePath = path.join(__dirname, '__fixtures__', 'diff');
+  const beforeFilePath = path.join(__dirname, '__fixtures__', `before.${extention}`);
+  const afterFilePath = path.join(__dirname, '__fixtures__', `after.${extention}`);
   const expected = fs.readFileSync(expectedFilePath, 'utf-8');
-  expect(genDiff(jsonBeforeFilePath, jsonAfterFilePath)).toBe(expected);
-});
 
-test('flat yaml diff', () => {
-  const expected = fs.readFileSync(expectedFilePath, 'utf-8');
-  expect(genDiff(yamlBeforeFilePath, yamlAfterFilePath)).toBe(expected);
-});
-
-test('flat ini diff', () => {
-  const expected = fs.readFileSync(expectedFilePath, 'utf-8');
-  expect(genDiff(iniBeforeFilePath, iniAfterFilePath)).toBe(expected);
+  expect(genDiff(beforeFilePath, afterFilePath)).toBe(expected);
 });
