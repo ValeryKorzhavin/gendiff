@@ -13,25 +13,24 @@ const genDiff = (firstFilePath, secondFilePath) => {
   const obj1 = parse(firstFileData, firstFileExtension);
   const obj2 = parse(secondFileData, secondFileExtension);
 
-  const keysIntersection = _.intersection(_.keys(obj1), _.keys(obj2));
-  const onlyFirstObjectKeys = _.difference(_.keys(obj1), _.keys(obj2));
-  const onlySecondObjectKeys = _.difference(_.keys(obj2), _.keys(obj1));
+  const objectsKeys = _.union(_.keys(obj1), _.keys(obj2));
 
-  const bothObjectsDiff = keysIntersection.reduce((acc, key) => {
-    if (obj1[key] === obj2[key]) {
-      return `${acc}\n    ${key}: ${obj2[key]}`;
+  const diff = objectsKeys.reduce((acc, key) => {
+    if (_.has(obj1, key) && _.has(obj2, key)) {
+      if (obj1[key] === obj2[key]) {
+        return [...acc, `    ${key}: ${obj2[key]}`];
+      }
+      return [...acc, `  - ${key}: ${obj1[key]}`, `  + ${key}: ${obj2[key]}`];
     }
-    return `${acc}\n  - ${key}: ${obj1[key]}\n  + ${key}: ${obj2[key]}`;
-  }, '');
-  const firstObjectDiff = onlyFirstObjectKeys
-    .reduce((acc, key) => `${acc}\n  - ${key}: ${obj1[key]}`, '');
-  const secondObjectDiff = onlySecondObjectKeys
-    .reduce((acc, key) => `${acc}\n  + ${key}: ${obj2[key]}`, '');
+    if (_.has(obj1, key)) {
+      return [...acc, `  - ${key}: ${obj1[key]}`];
+    }
+    return [...acc, `  + ${key}: ${obj2[key]}`];
+  }, []);
 
-  const output = [bothObjectsDiff, firstObjectDiff, secondObjectDiff].join('');
-  const formattedOutput = `{${output}\n}`;
+  const output = `{\n${diff.join('\n')}\n}`;
 
-  return formattedOutput;
+  return output;
 };
 
 export default genDiff;
