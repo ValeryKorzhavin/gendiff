@@ -10,8 +10,8 @@ You can install gendiff with npm.
 npm install --global korzhavin-gendiff
 ```
 
-### Expample
+### Expamples
 
 [![asciicast](https://asciinema.org/a/L1AeSck0SFxAb6WOCghzuBVVQ.svg)](https://asciinema.org/a/L1AeSck0SFxAb6WOCghzuBVVQ)
-
+[![asciicast](https://asciinema.org/a/iwwZy4V5LJ1hKj7VsAekMtUlL.svg)](https://asciinema.org/a/iwwZy4V5LJ1hKj7VsAekMtUlL)
 [//]: # (description, usage)
