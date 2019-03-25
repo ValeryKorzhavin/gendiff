@@ -10,6 +10,9 @@ const yamlAfterFilePath = path.join(__dirname, '__fixtures__', 'after.yaml');
 const jsonBeforeFilePath = path.join(__dirname, '__fixtures__', 'before.json');
 const jsonAfterFilePath = path.join(__dirname, '__fixtures__', 'after.json');
 
+const iniBeforeFilePath = path.join(__dirname, '__fixtures__', 'before.ini');
+const iniAfterFilePath = path.join(__dirname, '__fixtures__', 'after.ini');
+
 test('flat json diff', () => {
   const expected = fs.readFileSync(expectedFilePath, 'utf-8');
   expect(genDiff(jsonBeforeFilePath, jsonAfterFilePath)).toBe(expected);
@@ -18,4 +21,9 @@ test('flat json diff', () => {
 test('flat yaml diff', () => {
   const expected = fs.readFileSync(expectedFilePath, 'utf-8');
   expect(genDiff(yamlBeforeFilePath, yamlAfterFilePath)).toBe(expected);
+});
+
+test('flat ini diff', () => {
+  const expected = fs.readFileSync(expectedFilePath, 'utf-8');
+  expect(genDiff(iniBeforeFilePath, iniAfterFilePath)).toBe(expected);
 });
