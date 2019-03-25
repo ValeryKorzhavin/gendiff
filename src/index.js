@@ -13,19 +13,18 @@ const genDiff = (firstFilePath, secondFilePath) => {
   const obj2 = parse(secondFileData, secondFileExtension);
   const objectsKeys = _.union(_.keys(obj1), _.keys(obj2));
 
-  const diff = objectsKeys.reduce((acc, key) => {
+  const diff = objectsKeys.map((key) => {
     if (_.has(obj1, key) && _.has(obj2, key)) {
       if (obj1[key] === obj2[key]) {
-        return [...acc, `    ${key}: ${obj2[key]}`];
+        return `    ${key}: ${obj2[key]}`;
       }
-      return [...acc, `  - ${key}: ${obj1[key]}`, `  + ${key}: ${obj2[key]}`];
+      return `  - ${key}: ${obj1[key]}\n  + ${key}: ${obj2[key]}`;
     }
     if (_.has(obj1, key)) {
-      return [...acc, `  - ${key}: ${obj1[key]}`];
+      return `  - ${key}: ${obj1[key]}`;
     }
-    return [...acc, `  + ${key}: ${obj2[key]}`];
-  }, []);
-
+    return `  + ${key}: ${obj2[key]}`;
+  });
   const output = `{\n${diff.join('\n')}\n}`;
 
   return output;
