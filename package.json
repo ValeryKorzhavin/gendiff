@@ -1,0 +1,47 @@
+{
+  "name": "korzhavin-gendiff",
+  "version": "1.0.1",
+  "description": "Compares two configuration files and shows a difference.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "prepublishOnly": "npm run build"
+  },
+  "bin": {
+    "gendiff": "dist/bin/gendiff.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ValeryKorzhavin/project-lvl2-s455.git"
+  },
+  "keywords": [
+    "hexlet",
+    "gendiff",
+    "configuration",
+    "cli-tool"
+  ],
+  "author": "Valery Korzhavin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ValeryKorzhavin/project-lvl2-s455/issues"
+  },
+  "homepage": "https://github.com/ValeryKorzhavin/project-lvl2-s455#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.2",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.15.3",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-flowtype": "^3.4.2",
+    "eslint-plugin-import": "^2.16.0"
+  },
+  "dependencies": {
+    "commander": "^2.19.0"
+  }
+}
