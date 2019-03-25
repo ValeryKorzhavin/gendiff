@@ -16,6 +16,9 @@ gendiff before.json after.json
 ```
 
 ### Expamples
-
+# Help
 [![asciicast](https://asciinema.org/a/L1AeSck0SFxAb6WOCghzuBVVQ.svg)](https://asciinema.org/a/L1AeSck0SFxAb6WOCghzuBVVQ)
+# JSON files difference
 [![asciicast](https://asciinema.org/a/iwwZy4V5LJ1hKj7VsAekMtUlL.svg)](https://asciinema.org/a/iwwZy4V5LJ1hKj7VsAekMtUlL)
+# Yaml files difference
+[![asciicast](https://asciinema.org/a/Z7OpLg8CoEWHSdWd7CCCYBy9y.svg)](https://asciinema.org/a/Z7OpLg8CoEWHSdWd7CCCYBy9y)
