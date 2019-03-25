@@ -24,6 +24,14 @@
     "configuration",
     "cli-tool"
   ],
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "coverageReporters": [
+      "lcov",
+      "text-summary"
+    ]
+  },
   "author": "Valery Korzhavin",
   "license": "ISC",
   "bugs": {
