@@ -25,3 +25,5 @@ gendiff before.json after.json
 [![asciicast](https://asciinema.org/a/Z7OpLg8CoEWHSdWd7CCCYBy9y.svg)](https://asciinema.org/a/Z7OpLg8CoEWHSdWd7CCCYBy9y)
 #### Ini files difference
 [![asciicast](https://asciinema.org/a/ZscVxdpzxMLt5phtUyA8hSoNS.svg)](https://asciinema.org/a/ZscVxdpzxMLt5phtUyA8hSoNS)
+#### Nested  json files difference
+[![asciicast](https://asciinema.org/a/EFSOwHey8fKNQaFr5gsMSkKKJ.svg)](https://asciinema.org/a/EFSOwHey8fKNQaFr5gsMSkKKJ)
