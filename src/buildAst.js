@@ -4,24 +4,24 @@ const patterns = [
   {
     checkMatch: (key, obj1, obj2) => obj1[key] instanceof Object && obj2[key] instanceof Object,
     makeNode: (key, obj1, obj2, buildChild) => ({
-      type: 'complex',
       key,
+      type: 'complex',
       children: buildChild(obj1[key], obj2[key]),
     }),
   },
   {
     checkMatch: (key, obj1, obj2) => obj1[key] === obj2[key],
     makeNode: (key, obj1) => ({
-      type: 'unchanged',
       key,
+      type: 'unchanged',
       value: obj1[key],
     }),
   },
   {
     checkMatch: (key, obj1, obj2) => _.has(obj1, key) && _.has(obj2, key),
     makeNode: (key, obj1, obj2) => ({
-      type: 'changed',
       key,
+      type: 'changed',
       oldValue: obj1[key],
       newValue: obj2[key],
     }),
@@ -37,8 +37,8 @@ const patterns = [
   {
     checkMatch: (key, obj1, obj2) => _.has(obj2, key),
     makeNode: (key, obj1, obj2) => ({
-      type: 'added',
       key,
+      type: 'added',
       value: obj2[key],
     }),
   },

@@ -1,31 +1,31 @@
 const tab = depth => ' '.repeat(depth * 2);
-const format = (key, line, depth, change) => `${tab(depth)}${change} ${key}: ${line}`;
 
 const renderValue = (value, depth) => {
   if (value instanceof Object) {
     const entries = Object.keys(value).map(key => `${tab(depth + 4)}${key}: ${value[key]}`);
-    return ['{\n', ...entries, `\n${tab(depth + 2)}}`].join('');
+    return ['{', ...entries, `${tab(depth + 2)}}`].join('\n');
   }
   return `${value}`;
 };
 
-const render = (diffAst, depth = 0) => {
-  const typeMapping = {
-    complex: ({ key, children }) => (
-      `${format(key, '{\n', depth + 1, ' ')}`
-      + `${render(children, depth + 2)}`
-      + `\n${tab(depth + 2)}}`
-    ),
-    changed: ({ key, oldValue, newValue }) => (
-      format(key, `${renderValue(oldValue, depth)}\n`, depth + 1, '-')
-      + format(key, `${renderValue(newValue, depth)}`, depth + 1, '+')
-    ),
-    unchanged: ({ key, value }) => format(key, `${renderValue(value, depth)}`, depth + 1, ' '),
-    added: ({ key, value }) => format(key, `${renderValue(value, depth)}`, depth + 1, '+'),
-    removed: ({ key, value }) => format(key, `${renderValue(value, depth)}`, depth + 1, '-'),
-  };
+const format = (key, value, depth, change) => (
+  `${tab(depth + 1)}${change} ${key}: ${renderValue(value, depth)}`
+);
 
-  return diffAst.map(node => typeMapping[node.type](node, depth)).join('\n');
+const typeMapping = {
+  complex: ({ key, children }, depth, render) => (
+    `${tab(depth + 2)}${key}: {\n${render(children, depth + 2)}\n${tab(depth + 2)}}`
+  ),
+  changed: ({ key, oldValue, newValue }, depth) => (
+    `${format(key, oldValue, depth, '-')}\n${format(key, newValue, depth, '+')}`
+  ),
+  unchanged: ({ key, value }, depth) => format(key, value, depth, ' '),
+  added: ({ key, value }, depth) => format(key, value, depth, '+'),
+  removed: ({ key, value }, depth) => format(key, value, depth, '-'),
 };
+
+const render = (diffAst, depth = 0) => diffAst
+  .map(node => typeMapping[node.type](node, depth, render))
+  .join('\n');
 
 export default render;

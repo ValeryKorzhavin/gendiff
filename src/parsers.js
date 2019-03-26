@@ -7,6 +7,4 @@ const extensionsMapping = {
   ini: ini.parse,
 };
 
-const parse = (data, extension) => extensionsMapping[extension](data);
-
-export default parse;
+export default (data, extension) => extensionsMapping[extension](data);
