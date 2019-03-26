@@ -33,8 +33,8 @@ const genDiff = (firstFilePath, secondFilePath) => {
   const objectsKeys = _.union(_.keys(obj1), _.keys(obj2));
 
   const diff = objectsKeys.map((key) => {
-    const [, action] = patterns.find(([check]) => check(key, obj1, obj2));
-    return action(key, obj1, obj2);
+    const [, getPattern] = patterns.find(([check]) => check(key, obj1, obj2));
+    return getPattern(key, obj1, obj2);
   });
   const output = `{\n${diff.join('\n')}\n}`;
 
