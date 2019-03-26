@@ -5,41 +5,41 @@ const patterns = [
     checkMatch: (key, obj1, obj2) => obj1[key] instanceof Object && obj2[key] instanceof Object,
     makeNode: (key, obj1, obj2, buildChild) => ({
       type: 'complex',
-      key: key,
+      key,
       children: buildChild(obj1[key], obj2[key]),
     }),
   },
   {
     checkMatch: (key, obj1, obj2) => obj1[key] === obj2[key],
-    makeNode: (key, obj1, obj2) => ({
+    makeNode: (key, obj1) => ({
       type: 'unchanged',
-      key: key,
-      value: obj1[key]
+      key,
+      value: obj1[key],
     }),
   },
   {
     checkMatch: (key, obj1, obj2) => _.has(obj1, key) && _.has(obj2, key),
     makeNode: (key, obj1, obj2) => ({
       type: 'changed',
-      key: key,
+      key,
       oldValue: obj1[key],
       newValue: obj2[key],
-    }),    
+    }),
   },
   {
     checkMatch: (key, obj1) => _.has(obj1, key),
-    makeNode: (key, obj1, obj2) => ({
+    makeNode: (key, obj1) => ({
       type: 'removed',
-      key: key,
-      value: obj1[key]
+      key,
+      value: obj1[key],
     }),
   },
   {
     checkMatch: (key, obj1, obj2) => _.has(obj2, key),
     makeNode: (key, obj1, obj2) => ({
       type: 'added',
-      key: key,
-      value: obj2[key]
+      key,
+      value: obj2[key],
     }),
   },
 ];
