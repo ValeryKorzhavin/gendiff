@@ -1,34 +1,28 @@
 import _ from 'lodash';
 
-const makeNode = (key, type, value) => ({
-  key,
-  type,
-  value,
-});
-
 const patterns = [
   {
     checkMatch: (key, obj1, obj2) => obj1[key] instanceof Object && obj2[key] instanceof Object,
-    node: (key, obj1, obj2, buildChild) => makeNode(key, 'complex', buildChild(obj1[key], obj2[key])),
+    node: (key, obj1, obj2, buildChild) => ({ key, type: 'complex', value: buildChild(obj1[key], obj2[key]) }),
   },
   {
     checkMatch: (key, obj1, obj2) => obj1[key] === obj2[key],
-    node: (key, obj1) => makeNode(key, 'unchanged', obj1[key]),
+    node: (key, obj1) => ({ key, type: 'unchanged', value: obj1[key] }),
   },
   {
     checkMatch: (key, obj1, obj2) => _.has(obj1, key) && _.has(obj2, key),
     node: (key, obj1, obj2) => ([
-      makeNode(key, 'removed', obj1[key]),
-      makeNode(key, 'added', obj2[key]),
+      ({ key, type: 'removed', value: obj1[key] }),
+      ({ key, type: 'added', value: obj2[key] }),
     ]),
   },
   {
     checkMatch: (key, obj1) => _.has(obj1, key),
-    node: (key, obj1) => makeNode(key, 'removed', obj1[key]),
+    node: (key, obj1) => ({ key, type: 'removed', value: obj1[key] }),
   },
   {
     checkMatch: (key, obj1, obj2) => _.has(obj2, key),
-    node: (key, obj1, obj2) => makeNode(key, 'added', obj2[key]),
+    node: (key, obj1, obj2) => ({ key, type: 'added', value: obj2[key] }),
   },
 ];
 

@@ -17,7 +17,7 @@ const renderValue = (value, depth) => {
 
 const render = (diff, depth) => (
   diff.map(({ key, type, value }) => {
-    if (value instanceof Array) {
+    if (type === 'complex') {
       return `${tab(depth + 1)}`
       + `${stateMapping[type]} ${key}: {\n${render(value, depth + 2).join('\n')}`
       + `\n${tab(depth + 2)}}`;
