@@ -27,7 +27,7 @@ gendiff -h
 
     -h, --help           output usage information
     -V, --version        output the version number
-    -f, --format [type]  Output formats: simple (by default), plain
+    -f, --format [type]  Output formats: simple (by default), plain, json
 ```
 ### Expamples
 #### Help
@@ -41,4 +41,6 @@ gendiff -h
 #### Nested  json files difference
 [![asciicast](https://asciinema.org/a/EFSOwHey8fKNQaFr5gsMSkKKJ.svg)](https://asciinema.org/a/EFSOwHey8fKNQaFr5gsMSkKKJ)
 #### Nested json files difference plain format
-[![asciicast](https://asciinema.org/a/WbiwbuYFY9Wejm7T3NZ8SHIGG.svg)](https://asciinema.org/a/WbiwbuYFY9Wejm7T3NZ8SHIGG)a
+[![asciicast](https://asciinema.org/a/WbiwbuYFY9Wejm7T3NZ8SHIGG.svg)](https://asciinema.org/a/WbiwbuYFY9Wejm7T3NZ8SHIGG)
+#### Nested json files difference json format
+[![asciicast](https://asciinema.org/a/C0XPxujRIYllumbfMMlS8vwfX.svg)](https://asciinema.org/a/C0XPxujRIYllumbfMMlS8vwfX)

@@ -1,6 +1,6 @@
 {
   "name": "korzhavin-gendiff",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "main": "index.js",
   "description": "Compares two configuration files and shows a difference.",
   "scripts": {
