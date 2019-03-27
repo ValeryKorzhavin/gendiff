@@ -4,8 +4,6 @@ const typeMapping = {
   unchanged: ' ',
   added: '+',
   removed: '-',
-  oldValue: '-',
-  newValue: '+',
   complex: ' ',
 };
 

@@ -22,12 +22,12 @@ const patterns = [
     makeNode: (key, obj1, obj2) => ([
       {
         key,
-        type: 'oldValue',
+        type: 'removed',
         value: obj1[key],
       },
       {
         key,
-        type: 'newValue',
+        type: 'added',
         value: obj2[key],
       },
     ]),
