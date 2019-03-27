@@ -13,9 +13,22 @@ npm install --global korzhavin-gendiff
 
 ### Usage
 ```
-gendiff before.json after.json
+gendiff --format plain before.json after.json
 ```
+### Help
+```
+gendiff -h
 
+  Usage: gendiff [options] <firstConfig> <secondConfig>
+
+  Compares two configuration files and shows a difference.
+
+  Options:
+
+    -h, --help           output usage information
+    -V, --version        output the version number
+    -f, --format [type]  Output formats: simple (by default), plain
+```
 ### Expamples
 #### Help
 [![asciicast](https://asciinema.org/a/L1AeSck0SFxAb6WOCghzuBVVQ.svg)](https://asciinema.org/a/L1AeSck0SFxAb6WOCghzuBVVQ)
@@ -27,3 +40,5 @@ gendiff before.json after.json
 [![asciicast](https://asciinema.org/a/ZscVxdpzxMLt5phtUyA8hSoNS.svg)](https://asciinema.org/a/ZscVxdpzxMLt5phtUyA8hSoNS)
 #### Nested  json files difference
 [![asciicast](https://asciinema.org/a/EFSOwHey8fKNQaFr5gsMSkKKJ.svg)](https://asciinema.org/a/EFSOwHey8fKNQaFr5gsMSkKKJ)
+#### Nested json files difference plain format
+[![asciicast](https://asciinema.org/a/WbiwbuYFY9Wejm7T3NZ8SHIGG.svg)](https://asciinema.org/a/WbiwbuYFY9Wejm7T3NZ8SHIGG)a

@@ -9,7 +9,6 @@ const extentions = [
   ['nested', 'ini', 'simple'],
   ['nested', 'yaml', 'simple'],
   ['nested', 'json', 'simple'],
-  // ['flat', 'ini', 'plain'],
   ['flat', 'yaml', 'plain'],
   ['flat', 'json', 'plain'],
   ['nested', 'ini', 'plain'],
