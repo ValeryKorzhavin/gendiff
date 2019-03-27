@@ -3,6 +3,11 @@ import path from 'path';
 import genDiff from '../src';
 
 const extentions = [
+  ['flat', 'yaml', 'json'],
+  ['flat', 'json', 'json'],
+  ['nested', 'ini', 'json'],
+  ['nested', 'yaml', 'json'],
+  ['nested', 'json', 'json'],
   ['flat', 'ini', 'simple'],
   ['flat', 'yaml', 'simple'],
   ['flat', 'json', 'simple'],
