@@ -1,6 +1,6 @@
 const tab = depth => ' '.repeat(depth * 2);
 
-const typeMapping = {
+const stateMapping = {
   unchanged: ' ',
   added: '+',
   removed: '-',
@@ -19,10 +19,10 @@ const render = (diff, depth) => (
   diff.map(({ key, type, value }) => {
     if (value instanceof Array) {
       return `${tab(depth + 1)}`
-      + `${typeMapping[type]} ${key}: {\n${render(value, depth + 2).join('\n')}`
+      + `${stateMapping[type]} ${key}: {\n${render(value, depth + 2).join('\n')}`
       + `\n${tab(depth + 2)}}`;
     }
-    return `${tab(depth + 1)}${typeMapping[type]} ${key}: ${renderValue(value, depth)}`;
+    return `${tab(depth + 1)}${stateMapping[type]} ${key}: ${renderValue(value, depth)}`;
   })
 );
 
