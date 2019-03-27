@@ -1,7 +1,7 @@
-import simpleRender from './simpleRender';
+import simple from './renderer';
 
 const formatMapping = {
-  simple: simpleRender,
+  simple,
 };
 
-export default (diffAst, format) => `{\n${formatMapping[format](diffAst)}\n}`;
+export default (diffAst, format) => formatMapping[format](diffAst);

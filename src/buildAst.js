@@ -6,7 +6,7 @@ const patterns = [
     makeNode: (key, obj1, obj2, buildChild) => ({
       key,
       type: 'complex',
-      children: buildChild(obj1[key], obj2[key]),
+      value: buildChild(obj1[key], obj2[key]),
     }),
   },
   {
@@ -19,18 +19,24 @@ const patterns = [
   },
   {
     checkMatch: (key, obj1, obj2) => _.has(obj1, key) && _.has(obj2, key),
-    makeNode: (key, obj1, obj2) => ({
-      key,
-      type: 'changed',
-      oldValue: obj1[key],
-      newValue: obj2[key],
-    }),
+    makeNode: (key, obj1, obj2) => ([
+      {
+        key,
+        type: 'oldValue',
+        value: obj1[key],
+      },
+      {
+        key,
+        type: 'newValue',
+        value: obj2[key],
+      },
+    ]),
   },
   {
     checkMatch: (key, obj1) => _.has(obj1, key),
     makeNode: (key, obj1) => ({
-      type: 'removed',
       key,
+      type: 'removed',
       value: obj1[key],
     }),
   },
@@ -47,11 +53,11 @@ const patterns = [
 const buildAst = (obj1, obj2) => {
   const objectsKeys = _.union(_.keys(obj1), _.keys(obj2));
 
-  return objectsKeys.map(key => (
-    patterns
+  return _.flatten(objectsKeys
+    .map(key => (patterns
       .find(({ checkMatch }) => checkMatch(key, obj1, obj2))
       .makeNode(key, obj1, obj2, buildAst)
-  ));
+    )));
 };
 
 export default buildAst;
