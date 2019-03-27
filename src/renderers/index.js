@@ -1,9 +1,9 @@
-import simple from './simpleRenderer';
+import pretty from './prettyRenderer';
 import plain from './plainRenderer';
 import json from './jsonRenderer';
 
 const formatMapping = {
-  simple,
+  pretty,
   plain,
   json,
 };

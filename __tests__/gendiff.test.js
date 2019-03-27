@@ -2,18 +2,18 @@ import fs from 'fs';
 import path from 'path';
 import genDiff from '../src';
 
-const extentions = [
+const testCases = [
   ['flat', 'yaml', 'json'],
   ['flat', 'json', 'json'],
   ['nested', 'ini', 'json'],
   ['nested', 'yaml', 'json'],
   ['nested', 'json', 'json'],
-  ['flat', 'ini', 'simple'],
-  ['flat', 'yaml', 'simple'],
-  ['flat', 'json', 'simple'],
-  ['nested', 'ini', 'simple'],
-  ['nested', 'yaml', 'simple'],
-  ['nested', 'json', 'simple'],
+  ['flat', 'ini', 'pretty'],
+  ['flat', 'yaml', 'pretty'],
+  ['flat', 'json', 'pretty'],
+  ['nested', 'ini', 'pretty'],
+  ['nested', 'yaml', 'pretty'],
+  ['nested', 'json', 'pretty'],
   ['flat', 'yaml', 'plain'],
   ['flat', 'json', 'plain'],
   ['nested', 'ini', 'plain'],
@@ -21,7 +21,7 @@ const extentions = [
   ['nested', 'json', 'plain'],
 ];
 
-test.each(extentions)('%s %s diff %s format', (type, extention, format) => {
+test.each(testCases)('%s %s diff %s format', (type, extention, format) => {
   const expectedFilePath = path.join(__dirname, `__fixtures__/${type}`, `${format}`);
   const beforeFilePath = path.join(__dirname, `__fixtures__/${type}`, `before.${extention}`);
   const afterFilePath = path.join(__dirname, `__fixtures__/${type}`, `after.${extention}`);

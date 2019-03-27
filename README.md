@@ -27,7 +27,7 @@ gendiff -h
 
     -h, --help           output usage information
     -V, --version        output the version number
-    -f, --format [type]  Output formats: simple (by default), plain, json
+    -f, --format [type]  Output formats: pretty (by default), plain, json
 ```
 ### Expamples
 #### Help

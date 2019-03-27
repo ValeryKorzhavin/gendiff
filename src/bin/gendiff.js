@@ -8,7 +8,7 @@ program
   .version(version)
   .description(description)
   .arguments('<firstConfig> <secondConfig>')
-  .option('-f, --format [type]', 'output formats: simple, plain', 'simple')
+  .option('-f, --format [type]', 'output formats: pretty, plain, json', 'pretty')
   .usage('[options] <firstConfig> <secondConfig>')
   .action((firstConfig, secondConfig) => (
     console.log(genDiff(firstConfig, secondConfig, program.format))
