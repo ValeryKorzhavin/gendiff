@@ -27,8 +27,8 @@ const stateMapping = {
   removed: ({ key, value }, depth) => format(key, value, depth, '-'),
 };
 
-const render = (diffAst, depth) => _.flatten(diffAst
-  .map(node => stateMapping[node.type](node, depth, render)));
+const render = (diffAst, depth) => diffAst
+  .map(node => stateMapping[node.type](node, depth, render));
 
 
-export default diffAst => `{\n${render(diffAst, 0)}\n}`.split(',').join('\n');
+export default diffAst => `{\n${_.flatten(render(diffAst, 0))}\n}`.split(',').join('\n');
