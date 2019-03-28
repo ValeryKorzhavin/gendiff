@@ -13,7 +13,7 @@ const stateMapping = {
   changed: ({ key, oldValue, newValue }, parent) => (
     `Property '${parent}${key}' was updated. From ${renderValue(oldValue)} to ${renderValue(newValue)}`
   ),
-  unchanged: () => '',
+  unchanged: () => null,
   added: ({ key, value }, parent) => (
     `Property '${parent}${key}' was added with value: ${renderValue(value)}`
   ),
