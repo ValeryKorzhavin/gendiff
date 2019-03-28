@@ -30,5 +30,4 @@ const stateMapping = {
 const render = (diffAst, depth) => diffAst
   .map(node => stateMapping[node.type](node, depth, render));
 
-
 export default diffAst => `{\n${_.flatten(render(diffAst, 0))}\n}`.split(',').join('\n');
