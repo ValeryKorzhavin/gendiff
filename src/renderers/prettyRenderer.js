@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const tab = depth => ' '.repeat(depth * 2);
 
 const renderValue = (value, depth) => {
@@ -16,15 +18,17 @@ const stateMapping = {
   complex: ({ key, children }, depth, render) => (
     `${tab(depth + 2)}${key}: {\n${render(children, depth + 2)}\n${tab(depth + 2)}}`
   ),
-  changed: ({ key, oldValue, newValue }, depth) => (
-    `${format(key, oldValue, depth, '-')}\n${format(key, newValue, depth, '+')}`
-  ),
+  changed: ({ key, oldValue, newValue }, depth) => ([
+    `${format(key, oldValue, depth, '-')}`,
+    `${format(key, newValue, depth, '+')}`,
+  ]),
   unchanged: ({ key, value }, depth) => format(key, value, depth, ' '),
   added: ({ key, value }, depth) => format(key, value, depth, '+'),
   removed: ({ key, value }, depth) => format(key, value, depth, '-'),
 };
 
-const render = (diffAst, depth) => diffAst
-  .map(node => stateMapping[node.type](node, depth, render));
+const render = (diffAst, depth) => _.flatten(diffAst
+  .map(node => stateMapping[node.type](node, depth, render)));
+
 
 export default diffAst => `{\n${render(diffAst, 0)}\n}`.split(',').join('\n');
